@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Главная страница
+{%endblock%}
+
+{% block content %}
+    <h1>XBOX Game</h1>
+
+    <form method="POST"> {% csrf_token %}
+        <input type="submit" value="Обновить" >
+    </form>
+</body>
+
+    <table class="table table-striped">
+        <thead>
+        {% for el in filds %}
+        <th scope="col">{{ el.verbose_name }}</th>
+        {% endfor %}
+        </thead>
+        <tbody>
+            {% for el in games %}
+            <tr>
+                <th scope="row">{{ el.id }}</th>
+                <td>{{ el.name }}</td>
+                <td>{{ el.rating_ms }}</td>
+                <td> <input type="checkbox" {% if el.now_on_sale %} checked {%endif%}/></td>
+                <td>{{ el.rating_gavimo }}</td>
+                <td>{{ el.rating_eneba }}</td>
+                <td>{{ el.total_rating }}</td>
+                <td><input type="checkbox" {% if el.game_sale %} checked {%endif%}/</td>
+                <td>{{ el.total_rating }}</td>
+                <td>{{ el.first_price }}</td>
+                <td>{{ el.first_region }}</td>
+                <td>{{ el.second_price }}</td>
+                <td>{{ el.second_region }}</td>
+                <td>{{ el.difference }}</td>
+                <td><input type="checkbox" {% if el.buy %} checked {%endif%}/></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
